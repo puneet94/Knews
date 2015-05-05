@@ -5,7 +5,7 @@ $(document).ready(function () {
     $.ajax({
     	//url: 'https://ajax.googleapis.com/ajax/services/search/news?v=1.0&q=nepal'
         //url: 'http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=8&q=http%3A%2F%2Fnews.google.com%2Fnews%3Foutput%3Drss'
-        url: 'https://ajax.googleapis.com/ajax/services/search/news?v=1.0&rsz=7&q='+geoplugin_countryName(),
+        url: 'https://ajax.googleapis.com/ajax/services/search/news?v=1.0&q='+geoplugin_countryName(),
         dataType: 'jsonp',
         success: function (data){
         	data.responseData.results.filter(function(x){
@@ -19,7 +19,6 @@ $(document).ready(function () {
 var clearMainDiv = function(){
 	var divs=document.getElementById("maindiv");
 	var children = divs.childNodes;
-	console.log(children);
     var len = children.length;
     //reg = /(?:\s|^)fooClass(?:\s|$)/;
 	while(len--) {
@@ -38,7 +37,6 @@ var print=function(y){
 		
 		var newimg = document.createElement('img');
 		var img_index = y[i].image.url.indexOf("http");
-		console.log(img_index);
     	var img_src=y[i].image.url.slice(img_index);
 		newimg.setAttribute('src',img_src);
 		newimg.setAttribute('class','image');
@@ -49,7 +47,7 @@ var print=function(y){
 		
 		var newhref = document.createElement('a');
 		// var url_index = y[i].signedRedirectUrl.indexOf("http");
-		// console.log(url_index);
+		// 
   //   	var title_url=y[i].url.slice(url_index);
 		newhref.setAttribute('href',y[i].signedRedirectUrl);
 		newhref.innerHTML += y[i].title;
@@ -123,5 +121,5 @@ var movies=function(){
 
 
 //window.onload= default1();
-//console.log(y);
+
 
