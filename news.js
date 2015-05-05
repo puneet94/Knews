@@ -5,7 +5,7 @@ $(document).ready(function () {
     $.ajax({
     	//url: 'https://ajax.googleapis.com/ajax/services/search/news?v=1.0&q=nepal'
         //url: 'http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=8&q=http%3A%2F%2Fnews.google.com%2Fnews%3Foutput%3Drss'
-        url: 'https://ajax.googleapis.com/ajax/services/search/news?v=1.0&num=8&q='+geoplugin_countryName(),
+        url: 'https://ajax.googleapis.com/ajax/services/search/news?v=1.0&rsz=8&q='+geoplugin_countryName(),
         dataType: 'jsonp',
         success: function (data){
         	data.responseData.results.filter(function(x){
