@@ -2,11 +2,16 @@
 var obj=[];
 $(document).ready(function () {
 	
-	$.getJSON('https://api.wipmania.com/jsonp?callback=?', function (data) { 
-         var country=data.address.country;
-         ajaxCall(country);
-         console.log(country); 
-	});
+	$.ajax({	
+        	url: 'https://freegeoip.net/json/',
+        	dataType: 'jsonp',
+        	success: function (location){
+        		ajaxCall(location.city);
+        		ajaxCall(location.region_name);
+        		ajaxCall(location.country_name);
+         		
+	 		}
+    	});
 	
     var ajaxCall=function(country){
     	$.ajax({	
