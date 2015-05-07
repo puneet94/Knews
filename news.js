@@ -1,12 +1,14 @@
 "use strict";
 var obj=[];
+
 $(document).ready(function () {
 		$.ajax({	
         	url: 'https://freegeoip.net/json/',
         	dataType: 'jsonp',
         	success: function (location){
         		ajaxCall(location.city);   
-        		ajaxCall(location.region_name);     	
+        		ajaxCall(location.region_name);
+        			ajaxCall(location.country_name);	     	
 	 		}
     	});
 	
@@ -46,9 +48,16 @@ var print=function(y){
 		//newdiv.innerHTML += y[i];
 		
 		var newimg = document.createElement('img');
-		var img_index = y[i].image.url.indexOf("http");
-    	var img_src=y[i].image.url.slice(img_index);
-		newimg.setAttribute('src',img_src);
+		if(y[i].image != undefined)
+		{
+			var img_index = y[i].image.url.indexOf("http");
+    		var img_src=y[i].image.url.slice(img_index);
+			newimg.setAttribute('src',img_src);
+		}
+		else
+		{
+			newimg.setAttribute('src','images/img_not_found.png');	
+		}
 		newimg.setAttribute('class','image');
 		
 		var newspan = document.createElement('span');
@@ -79,7 +88,6 @@ var default1=function(){
 	
 	var y=[];
 	clearMainDiv();
-	obj.reverse();
 	obj.filter(function(x){
 	y.push(x);
 			
@@ -129,38 +137,7 @@ var movies=function(){
 	print(y);
 };
 
-$(document).ready(function () {
-	
-	// $.getJSON('https://api.wipmania.com/jsonp?callback=?', function (data) { 
- //         var country=data.address.country;
- //         ajaxCall(country);
- //         ajaxCall(country);
- //         console.log(country); 
-	// });
-		$.ajax({	
-        	url: 'https://freegeoip.net/json/',
-        	dataType: 'jsonp',
-        	success: function (location){
-        			
-        			ajaxCall(location.country_name);	
-        	
-	 		}
-    	});
-	
-    var ajaxCall=function(country){
-    	$.ajax({	
-        	url: 'https://ajax.googleapis.com/ajax/services/search/news?v=1.0&q='+country,
-        	dataType: 'jsonp',
-        	success: function (data){
-        		data.responseData.results.filter(function(x){
-				obj.push(x);
-				console.log(country+"yes");
-	 			});
-	 		}
-    	});
-	};
 
-});
-
+//window.onload= default1();
 
 
