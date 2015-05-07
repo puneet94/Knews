@@ -1,4 +1,4 @@
-"use strict";
+//"use strict";
 var obj=[];
 $(document).ready(function () {
 	
@@ -132,6 +132,6 @@ var movies=function(){
 };
 
 
-//window.onload= default1();
+
 
 
