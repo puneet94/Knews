@@ -5,7 +5,8 @@ $(document).ready(function () {
         	url: 'https://freegeoip.net/json/',
         	dataType: 'jsonp',
         	success: function (location){
-        		ajaxCall(location.city);        	
+        		ajaxCall(location.city);   
+        		ajaxCall(location.region_name);     	
 	 		}
     	});
 	
@@ -35,7 +36,7 @@ $(document).ready(function () {
         	url: 'https://freegeoip.net/json/',
         	dataType: 'jsonp',
         	success: function (location){
-        			ajaxCall(location.region_name);
+        			
         			ajaxCall(location.country_name);	
         	
 	 		}
