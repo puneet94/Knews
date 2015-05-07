@@ -1,15 +1,43 @@
 "use strict";
 var obj=[];
 $(document).ready(function () {
-	
-	$.ajax({	
+		$.ajax({	
         	url: 'https://freegeoip.net/json/',
         	dataType: 'jsonp',
         	success: function (location){
-        		ajaxCall(location.city);
-        		ajaxCall(location.region_name);
-        		ajaxCall(location.country_name);
-         		
+        		ajaxCall(location.city);        	
+	 		}
+    	});
+	
+    	var ajaxCall=function(country){
+    		$.ajax({	
+        		url: 'https://ajax.googleapis.com/ajax/services/search/news?v=1.0&q='+country,
+        		dataType: 'jsonp',
+        		success: function (data){
+        			data.responseData.results.filter(function(x){
+						obj.push(x);
+						console.log(country+"yes");
+	 				});
+	 			}
+    		});
+		};
+
+});
+$(document).ready(function () {
+	
+	// $.getJSON('https://api.wipmania.com/jsonp?callback=?', function (data) { 
+ //         var country=data.address.country;
+ //         ajaxCall(country);
+ //         ajaxCall(country);
+ //         console.log(country); 
+	// });
+		$.ajax({	
+        	url: 'https://freegeoip.net/json/',
+        	dataType: 'jsonp',
+        	success: function (location){
+        			ajaxCall(location.region_name);
+        			ajaxCall(location.country_name);	
+        	
 	 		}
     	});
 	
@@ -19,8 +47,8 @@ $(document).ready(function () {
         	dataType: 'jsonp',
         	success: function (data){
         		data.responseData.results.filter(function(x){
-					obj.push(x);
-					console.log(country+"yes");
+				obj.push(x);
+				console.log(country+"yes");
 	 			});
 	 		}
     	});
